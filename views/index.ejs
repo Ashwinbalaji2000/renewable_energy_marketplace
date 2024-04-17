@@ -90,11 +90,26 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <form>
+            <div class="mb-3">
+              <label for="amtofenergy" class="form-label">Enter the Amount of Energy Needed:</label>
+              <div class="energy_input">
+                <input type="number" class="form-control" id="amtofenergy" aria-describedby="amountOfEnergy">
+                <h4 class="m-2">KW/M</h4>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label">Time:</label>
+              <div class="energy_input">
+                <input type="number" class="form-control" id="timerequired" aria-describedby="timerequired">
+                <h4 class="m-2">m</h4>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success request-btn d-grid gap-2 btn-lg">Request Energy</button>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -108,11 +123,29 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <div class="alert alert-warning" role="alert">
+            Peer 1 has requested <b>30KW</b> Energy for <b>5</b> hours
+          </div>
+          <form>
+            <div class="mb-3">
+              <label for="sellenergy" class="form-label">Enter the Amount of Energy To Sell:</label>
+              <div class="energy_input">
+                <input type="number" class="form-control" id="sellenergy" aria-describedby="amountOfEnergy">
+                <h4 class="m-2">KW/M</h4>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="time" class="form-label">Cost/KW</label>
+              <div class="energy_input">
+                <input type="number" class="form-control" id="sellcost" aria-describedby="timerequired">
+                <h4 class="m-2">₹/KW</h4>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-outline-success request-btn d-grid gap-2 btn-lg">Sell Energy</button>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>
@@ -122,15 +155,16 @@
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="transLabel">Transactions</h5>
+          <h5 class="modal-title" id="transLabel">Energy Transaction History </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          ...
+          <ul class="list-group list-group-flush">
+            <div class="alert alert-success" role="alert"> You have bought <b>120KW</b> of enrgy for <b>3</b> hours and total cost of <b>₹1200</b></div>
+          </ul>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
         </div>
       </div>
     </div>

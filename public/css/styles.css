@@ -1,3 +1,6 @@
+body{
+ /* background-color: #212529; */
+}
 .title-bar{
     display: flex;
 }
@@ -34,4 +37,12 @@
 
 .btngrp{
     margin-right: 3%;
+}
+
+.energy_input{
+    display: flex;
+}
+
+.request-btn{
+    width: 100%;
 }
