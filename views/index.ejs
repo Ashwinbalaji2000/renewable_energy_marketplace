@@ -15,12 +15,12 @@
           <div class="mt-3 shadow p-3 mb-5 bg-body rounded solarmeter">
             <div class="">
                 <h2 class="card-title">Energy</h2>
-                <h3 class="mt-3">43 KW</h3>
+                <h3 class="mt-3"><%= data.solar_energy %> KW</h3>
             </div>
            
             <div class="">
                 <h2 class="card-title">Irradiation</h2>
-                <h3 class="mt-3">33 w/m^2</h3>
+                <h3 class="mt-3"><%= data.irradiation %> w/m^2</h3>
             </div>
             
           </div>
@@ -35,12 +35,12 @@
             <div class="mt-3 shadow p-3 mb-5 bg-body rounded solarmeter">
               <div class="">
                   <h2 class="card-title">Energy</h2>
-                  <h3 class="mt-3">43 KW</h3>
+                  <h3 class="mt-3"><%= data.wind_energy %> KW</h3>
               </div>
              
               <div class="">
                   <h2 class="card-title">Wind Speed</h2>
-                  <h3 class="mt-3">33 m/s</h3>
+                  <h3 class="mt-3"><%= data.wind_speed %> m/s</h3>
               </div>
               
             </div>
@@ -56,20 +56,20 @@
       <div class="mt-3 shadow p-3 mb-5 bg-body rounded solarmeter">
         <div class="">
             <h2 class="card-title">Total Energy</h2>
-            <h3 class="mt-3">43 KW</h3>
+            <h3 class="mt-3"><%= data.solar_energy + data.wind_energy  %> KW</h3>
         </div>
        
         <div class="">
             <h2 class="card-title">Energy Consuption</h2>
-            <h3 class="mt-3">33 KW</h3>
+            <h3 class="mt-3"><%= data.energy_consumption %> KW</h3>
         </div>
         <div class="">
             <h2 class="card-title">Energy Availables</h2>
-            <h3 class="mt-3">33 KW</h3>
+            <h3 class="mt-3"><%= data.solar_energy + data.wind_energy - data.energy_consumption %> KW</h3>
         </div>
         <div class="">
             <h2 class="card-title">Battery SOC</h2>
-            <h3 class="mt-3">33 %</h3>
+            <h3 class="mt-3"><%= data.battery_soc %> %</h3>
         </div>
       </div>
      
