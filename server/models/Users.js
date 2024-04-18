@@ -30,6 +30,14 @@ const UserSchema = new schema({
     battery_soc:{
         type: Number,
         required: true
+    },
+    bought_energy:{
+        type: Number,
+        required: true
+    },
+    sold_energy:{
+        type: Number,
+        required: true
     }
 
 })

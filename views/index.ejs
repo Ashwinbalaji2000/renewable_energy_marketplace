@@ -2,7 +2,8 @@
     <div class="container-fluid">
       <a class="navbar-brand title-bar" href="#">
         <img src="/img/logo.png" alt="" width="70" height="70" class="d-inline-block align-text-top">
-        <h1 class="title-name">Renewable Energy Marketplace</h1>
+        <h1 class="title-name" user_id="<%= data._id %>">Renewable Energy Marketplace</h1>
+
       </a>
     </div>
 </nav>
@@ -49,14 +50,30 @@
         </div>
       </div>
   </div>
-
+  <div class="card centercard1 shadow p-3 mb-5 bg-body rounded">
+    <div class="card-body">
+      <h2 class="card-title">Energy Transaction</h2>
+      <div class="mt-3 shadow p-3 mb-5 bg-body rounded solarmeter">
+        <div class="">
+            <h2 class="card-title">Bought Energy</h2>
+            <h3 class="mt-3"><%= data.bought_energy %> KW</h3>
+        </div>
+       
+        <div class="">
+            <h2 class="card-title">Sold Energy</h2>
+            <h3 class="mt-3"><%= data.sold_energy %> KW</h3>
+        </div>
+      </div>
+     
+    </div>
+  </div>
   <div class="card centercard shadow p-3 mb-5 bg-body rounded">
     <div class="card-body">
       <h2 class="card-title">Overall Energy Details</h2>
       <div class="mt-3 shadow p-3 mb-5 bg-body rounded solarmeter">
         <div class="">
             <h2 class="card-title">Total Energy</h2>
-            <h3 class="mt-3"><%= data.solar_energy + data.wind_energy  %> KW</h3>
+            <h3 class="mt-3"><%= data.solar_energy + data.wind_energy + data.bought_energy - data.sold_energy  %> KW</h3>
         </div>
        
         <div class="">
@@ -65,8 +82,17 @@
         </div>
         <div class="">
             <h2 class="card-title">Energy Availables</h2>
-            <h3 class="mt-3"><%= data.solar_energy + data.wind_energy - data.energy_consumption %> KW</h3>
+            <h3 class="mt-3"><%= Math.max(data.solar_energy + data.wind_energy + data.bought_energy - data.sold_energy - data.energy_consumption, 0) %> KW</h3>
+
         </div>
+        <div class="">
+          <h2 class="card-title">Energy Needed</h2>
+          <%
+        const netEnergy = data.solar_energy + data.wind_energy + data.bought_energy - data.sold_energy - data.energy_consumption;
+        const displayValue = netEnergy < 0 ? -netEnergy : 0;
+        %>
+    <h3 class="mt-3"><%= displayValue %> KW</h3>
+      </div>
         <div class="">
             <h2 class="card-title">Battery SOC</h2>
             <h3 class="mt-3"><%= data.battery_soc %> %</h3>
@@ -79,7 +105,7 @@
   <div class="energy-btn mt-5">
     <button type="button" class="btn btn-outline-success btn-lg btngrp" data-bs-toggle="modal" data-bs-target="#requestEnergy">Request Energy</button>
     <button type="button" class="btn btn-outline-success btn-lg btngrp" data-bs-toggle="modal" data-bs-target="#sellEnergy">Sell Energy</button>
-    <button type="button" class="btn btn-outline-warning btn-lg btngrp" data-bs-toggle="modal" data-bs-target="#trans">Transactions</button>
+    <button type="button" class="btn btn-outline-warning btn-lg btngrp" id="transbtn" data-bs-toggle="modal" data-bs-target="#trans">Transactions</button>
   </div>
 
   <div class="modal fade" id="requestEnergy" tabindex="-1" aria-labelledby="requestEnergyLabel" aria-hidden="true">
@@ -105,7 +131,7 @@
                 <h4 class="m-2">m</h4>
               </div>
             </div>
-            <button type="submit" class="btn btn-outline-success request-btn d-grid gap-2 btn-lg">Request Energy</button>
+            <button type="submit" id="request_energy" class="btn btn-outline-success request-btn d-grid gap-2 btn-lg">Request Energy</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -123,9 +149,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <div class="alert alert-warning" role="alert">
-            Peer 1 has requested <b>30KW</b> Energy for <b>5</b> hours
-          </div>
+          <div id="requestalert"></div>
           <form>
             <div class="mb-3">
               <label for="sellenergy" class="form-label">Enter the Amount of Energy To Sell:</label>
@@ -141,7 +165,7 @@
                 <h4 class="m-2">₹/KW</h4>
               </div>
             </div>
-            <button type="submit" class="btn btn-outline-success request-btn d-grid gap-2 btn-lg">Sell Energy</button>
+            <button type="submit" id="sell_energy"class="btn btn-outline-success request-btn d-grid gap-2 btn-lg">Sell Energy</button>
           </form>
         </div>
         <div class="modal-footer">
@@ -158,10 +182,8 @@
           <h5 class="modal-title" id="transLabel">Energy Transaction History </h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-          <ul class="list-group list-group-flush">
-            <div class="alert alert-success" role="alert"> You have bought <b>120KW</b> of enrgy for <b>3</b> hours and total cost of <b>₹1200</b></div>
-          </ul>
+        <div class="modal-body" id="transaction_div">
+           
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

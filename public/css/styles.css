@@ -30,7 +30,10 @@ body{
     margin-right: 2%;
     margin-left: 2%;
 }
-
+.centercard1{
+    margin-right: 20%;
+    margin-left:20%
+}
 .energy-btn{
     display: flex;
     justify-content: center;
