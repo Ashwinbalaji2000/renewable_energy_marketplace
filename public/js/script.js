@@ -120,6 +120,56 @@ $("#transbtn").click(event=>{
       });
 })
 
+// update energy 
+$('#update_energy').click(event=>{
+  event.preventDefault()
+  var userId = $(".title-name").attr("user_id");
+  let solar_energy = $("#amtofsolarenergy").val()
+  let wind_energy = $("#amtofwindenergy").val()
+  let bought_energy = $("#amtofboughtenergy").val()
+  let sold_energy = $("#amtofsoldenergy").val()
+  let energy_consuption = $("#amtofconsuption").val()
+  let query={}
+  if(solar_energy != ""){
+    query["solar_energy"] = solar_energy
+  }
+  if(wind_energy !=""){
+    query["wind_energy"] = wind_energy
+  }
+  if(bought_energy !=""){
+    query["bought_energy"] = bought_energy
+  }
+  if(sold_energy !=""){
+    query["sold_energy"] = sold_energy
+  }
+  if(energy_consuption !=""){
+    query["energy_consumption"] = energy_consuption
+  }
+if(Object.keys(query).length == 0){
+  alert("Enter atleast one energy value")
+  return;
+}
+  fetch(`http://localhost:8080/api/updateenergy/${userId}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(query)
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      }) .then(data => {
+        console.log('Success:', data);
+        alert("Energy Updated succesfully!")
+        location.reload();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+})
 
 
 // update request energy
@@ -155,4 +205,6 @@ $( document ).ready(function() {
       });
 
 });
+
+
 

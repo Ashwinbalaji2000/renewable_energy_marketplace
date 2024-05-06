@@ -80,4 +80,20 @@ router.post('/fetchalltransaction',(req, res) => {
     });
 });
 
+
+router.post('/updateenergy/:id',(req,res)=>{
+    let id = req.params.id
+    let query = req.body
+    console.log(id, query)
+    User.updateOne(
+        { '_id': id },
+        { $set: query } 
+      ).then((result)=>{
+            res.send(result)
+      }).catch(err=>{
+        console.log("error in updating",err)
+        res.send({"status":500})
+      })
+    
+})
 module.exports = router;

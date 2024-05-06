@@ -48,24 +48,52 @@
            
           </div>
         </div>
-      </div>
+    </div>
+    <div class="peerdiv col-sm-6">
+    </div>  
   </div>
-  <div class="card centercard1 shadow p-3 mb-5 bg-body rounded">
-    <div class="card-body">
-      <h2 class="card-title">Energy Transaction</h2>
-      <div class="mt-3 shadow p-3 mb-5 bg-body rounded solarmeter">
-        <div class="">
-            <h2 class="card-title">Bought Energy</h2>
-            <h3 class="mt-3"><%= data.bought_energy %> KW</h3>
+
+
+  <div class="row main-energy">
+    <div class="col-sm-6">
+      <div class="card p-3 mb-5 bg-body rounded">
+        <div class="card-body">
+          <h2 class="card-title">Energy Transaction</h2>
+          <div class="mt-3 shadow p-3 mb-5 bg-body rounded solarmeter">
+            <div class="">
+                <h2 class="card-title">Bought Energy</h2>
+                <h3 class="mt-3"><%= data.bought_energy %> KW</h3>
+            </div>
+           
+            <div class="">
+                <h2 class="card-title">Sold Energy</h2>
+                <h3 class="mt-3"><%= data.sold_energy %> KW</h3>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  <div class="col-sm-6">
+    <div class="card p-3 mb-5 bg-body rounded">
+      <div class="card-body">
+        <h2 class="card-title">Peer2</h2>
+        <div class="mt-3 shadow p-3 mb-5 bg-body rounded solarmeter">
+          <div class="">
+              <h2 class="card-title">Energy Available</h2>
+              <h3 class="mt-3"><%= data.bought_energy %> KW</h3>
+          </div>
+         
+          <div class="">
+              <h2 class="card-title">Energy Needed</h2>
+              <h3 class="mt-3"><%= data.sold_energy %> KW</h3>
+          </div>
         </div>
        
-        <div class="">
-            <h2 class="card-title">Sold Energy</h2>
-            <h3 class="mt-3"><%= data.sold_energy %> KW</h3>
-        </div>
       </div>
-     
     </div>
+  </div>
+  
   </div>
   <div class="card centercard shadow p-3 mb-5 bg-body rounded">
     <div class="card-body">
@@ -106,6 +134,7 @@
     <button type="button" class="btn btn-outline-success btn-lg btngrp" data-bs-toggle="modal" data-bs-target="#requestEnergy">Request Energy</button>
     <button type="button" class="btn btn-outline-success btn-lg btngrp" data-bs-toggle="modal" data-bs-target="#sellEnergy">Sell Energy</button>
     <button type="button" class="btn btn-outline-warning btn-lg btngrp" id="transbtn" data-bs-toggle="modal" data-bs-target="#trans">Transactions</button>
+    <button type="button" class="btn btn-outline-primary btn-lg btngrp" data-bs-toggle="modal" data-bs-target="#updateEnergy">Update Energy</button>
   </div>
 
   <div class="modal fade" id="requestEnergy" tabindex="-1" aria-labelledby="requestEnergyLabel" aria-hidden="true">
@@ -184,6 +213,54 @@
         </div>
         <div class="modal-body" id="transaction_div">
            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="updateEnergy" tabindex="-1" aria-labelledby="updateEnergyLable" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="transLabel">Update Energy</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="amtofsolarenergy" class="form-label">Solar Energy:</label>
+              <div class="energy_input">
+                <input type="number" class="form-control" id="amtofsolarenergy" aria-describedby="amtofsolarenergy">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="amtofwindenergy" class="form-label">Wind Energy:</label>
+              <div class="energy_input">
+                <input type="number" class="form-control" id="amtofwindenergy" aria-describedby="amtofwindenergy">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="amtofboughtenergy" class="form-label">Bought Energy:</label>
+              <div class="energy_input">
+                <input type="number" class="form-control" id="amtofboughtenergy" aria-describedby="amtofboughtenergy">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="amtofsoldenergy" class="form-label">Sold Energy:</label>
+              <div class="energy_input">
+                <input type="number" class="form-control" id="amtofsoldenergy" aria-describedby="amtofsoldenergy">
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="amtofconsuption" class="form-label">Energy Consuption:</label>
+              <div class="energy_input">
+                <input type="number" class="form-control" id="amtofconsuption" aria-describedby="amtofconsuption">
+              </div>
+            </div>
+            <button type="submit" id="update_energy" class="btn btn-outline-success request-btn d-grid gap-2 btn-lg">Update Energies</button>
+          </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
