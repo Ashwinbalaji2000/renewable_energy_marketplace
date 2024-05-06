@@ -5,8 +5,19 @@ const User = require('../models/Users')
 
 router.get('/:id',async(req,res)=>{
     try{
-     const data = await User.findById(req.params.id)
-     res.render("index",{data})   
+    //  const data = await User.findById(req.params.id)
+     let userdatas = await User.find({})
+     let data = {}
+     let peerdata = {}
+     userdatas.forEach(element => {
+        if(element._id == req.params.id){
+            data = element
+        }else{
+            peerdata = element
+        }
+     });
+     console.log(data,peerdata)
+     res.render("index",{data,peerdata})   
 
     }catch(error){
         console.log(error)

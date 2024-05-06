@@ -77,16 +77,20 @@
   <div class="col-sm-6">
     <div class="card p-3 mb-5 bg-body rounded">
       <div class="card-body">
-        <h2 class="card-title">Peer2</h2>
+        <h2 class="card-title"><%= peerdata.name %> Energies</h2>
         <div class="mt-3 shadow p-3 mb-5 bg-body rounded solarmeter">
           <div class="">
               <h2 class="card-title">Energy Available</h2>
-              <h3 class="mt-3"><%= data.bought_energy %> KW</h3>
+              <h3 class="mt-3"><%= Math.max(peerdata.solar_energy + peerdata.wind_energy + peerdata.bought_energy - peerdata.sold_energy - peerdata.energy_consumption, 0) %>  KW</h3>
           </div>
          
           <div class="">
               <h2 class="card-title">Energy Needed</h2>
-              <h3 class="mt-3"><%= data.sold_energy %> KW</h3>
+              <%
+                const peernetEnergy = peerdata.solar_energy + peerdata.wind_energy + peerdata.bought_energy - peerdata.sold_energy - peerdata.energy_consumption;
+                const peerdisplayValue = peernetEnergy < 0 ? -peernetEnergy : 0;
+                %>
+                <h3 class="mt-3"><%= peerdisplayValue %> KW</h3>
           </div>
         </div>
        
