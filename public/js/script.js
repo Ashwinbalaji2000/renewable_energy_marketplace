@@ -54,8 +54,12 @@ $("#sell_energy").click(event=>{
     var userId = $(".title-name").attr("user_id");
     let users = USERS.filter(checkForOtherUser);
     let peerUser = users[0]
+    let availableEnergy = $("#availenergy").attr("available-energy")
     if($("#sellenergy").val() == "" || $("#sellcost").val() == "" ){
         alert("Enter all the Fields ")
+    }
+    else if(parseInt($("#sellenergy").val())>parseInt(availableEnergy)){
+      alert(`Insufficient energy, Available Energy is ${availableEnergy} KW`)
     }else{
         let sellenergy = {
             from: userId,

@@ -1,5 +1,4 @@
 const express = require("express")
-
 const router = express.Router();
 const User = require('../models/Users')
 
@@ -16,7 +15,6 @@ router.get('/:id',async(req,res)=>{
             peerdata = element
         }
      });
-     console.log(data,peerdata)
      res.render("index",{data,peerdata})   
 
     }catch(error){
